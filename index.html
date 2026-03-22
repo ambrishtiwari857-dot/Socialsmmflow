@@ -1,634 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SolarSMMFlow</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SolarSMMFlow</title>
 
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #071224 0%, #09162b 100%);
-      color: #fff;
-      min-height: 100vh;
-    }
-
-    .container {
-      max-width: 470px;
-      margin: 0 auto;
-      padding: 16px 14px 110px;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #ff8a00, #ff4d6d, #6a5cff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      font-weight: 900;
-      flex-shrink: 0;
-    }
-
-    .brand-name {
-      font-size: 18px;
-      font-weight: 900;
-      line-height: 1.2;
-    }
-
-    .support-btn {
-      background: #22c55e;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 24px;
-      padding: 12px 16px;
-      font-size: 14px;
-      font-weight: 800;
-      white-space: nowrap;
-      box-shadow: 0 10px 24px rgba(0,0,0,.2);
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #4b37ff 0%, #252e9d 100%);
-      border-radius: 30px;
-      padding: 22px 18px;
-      margin-bottom: 22px;
-      box-shadow: 0 18px 45px rgba(0,0,0,.3);
-    }
-
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .hero-badge {
-      background: rgba(255,255,255,.14);
-      color: #edf2ff;
-      border-radius: 18px;
-      padding: 10px 14px;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .hero h1 {
-      font-size: 28px;
-      line-height: 1.22;
-      margin-bottom: 12px;
-      font-weight: 900;
-    }
-
-    .hero p {
-      color: #d9e2ff;
-      font-size: 15px;
-      line-height: 1.55;
-    }
-
-    .balance-strip {
-      background: rgba(255,255,255,.06);
-      border-radius: 18px;
-      padding: 14px;
-      margin-bottom: 20px;
-      font-size: 15px;
-      color: #e7eeff;
-      font-weight: 700;
-    }
-
-    .section-title {
-      font-size: 22px;
-      font-weight: 900;
-      margin: 24px 0 8px;
-    }
-
-    .section-subtitle {
-      color: #95a4c5;
-      font-size: 14px;
-      margin-bottom: 14px;
-    }
-
-    .service-card {
-      background: rgba(5, 15, 35, .96);
-      border: 1px solid rgba(255,255,255,.04);
-      border-radius: 24px;
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 14px;
-      box-shadow: 0 10px 28px rgba(0,0,0,.18);
-    }
-
-    .icon-box {
-      width: 60px;
-      height: 60px;
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      flex-shrink: 0;
-    }
-
-    .ig-bg { background: linear-gradient(135deg, #ffd15a, #ff5b7f, #8b63ff); }
-    .yt-bg { background: linear-gradient(135deg, #ff6464, #ff2323); }
-    .fb-bg { background: linear-gradient(135deg, #5f91ff, #2a58ff); }
-    .trial-bg { background: linear-gradient(135deg, #ff6666, #d70000); }
-
-    .service-content {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .service-title {
-      font-size: 17px;
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-
-    .service-desc {
-      font-size: 14px;
-      color: #b8c4de;
-    }
-
-    .service-side {
-      text-align: right;
-      min-width: 78px;
-      flex-shrink: 0;
-    }
-
-    .service-price {
-      font-size: 24px;
-      font-weight: 900;
-      margin-bottom: 8px;
-    }
-
-    .buy-btn {
-      border: none;
-      background: #22c55e;
-      color: #fff;
-      border-radius: 999px;
-      padding: 12px 18px;
-      font-weight: 900;
-      cursor: pointer;
-      min-width: 78px;
-    }
-
-    .tag {
-      display: inline-block;
-      background: #ffd400;
-      color: #111;
-      border-radius: 999px;
-      padding: 5px 10px;
-      font-size: 12px;
-      font-weight: 900;
-      margin-bottom: 8px;
-    }
-
-    .order-panel {
-      background: #12203a;
-      border-radius: 20px;
-      padding: 18px;
-      margin-top: 24px;
-      box-shadow: 0 14px 34px rgba(0,0,0,.22);
-    }
-
-    .order-panel h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    .order-panel p {
-      color: #b8c5df;
-      line-height: 1.5;
-      margin-bottom: 10px;
-      font-size: 14px;
-    }
-
-    .mini-balance {
-      background: rgba(255,255,255,.06);
-      padding: 11px 12px;
-      border-radius: 12px;
-      margin-bottom: 12px;
-      font-size: 14px;
-    }
-
-    input, textarea {
-      width: 100%;
-      border: none;
-      outline: none;
-      border-radius: 14px;
-      padding: 13px 14px;
-      margin-bottom: 10px;
-      font-size: 15px;
-    }
-
-    textarea {
-      min-height: 130px;
-      resize: vertical;
-      background: #0c1830;
-      color: #d7ffe0;
-      border: 1px solid rgba(255,255,255,.08);
-    }
-
-    .action-btn {
-      width: 100%;
-      border: none;
-      border-radius: 12px;
-      padding: 13px;
-      font-size: 15px;
-      font-weight: 900;
-      cursor: pointer;
-      margin-top: 8px;
-    }
-
-    .add-balance-btn { background: #f59e0b; color: #fff; }
-    .buy-main-btn { background: #1d35ff; color: #fff; }
-    .copy-btn { background: #16a34a; color: #fff; }
-    .email-order-btn { background: #22c55e; color: #fff; }
-    .trial-btn { background: #ef4444; color: #fff; }
-
-    .note {
-      margin-top: 10px;
-      color: #9effb2;
-      font-size: 14px;
-      line-height: 1.5;
-      white-space: pre-wrap;
-    }
-
-    .contact-box {
-      margin-top: 24px;
-      background: rgba(255,255,255,.05);
-      border-radius: 18px;
-      padding: 16px;
-      color: #d7e0f4;
-      line-height: 1.7;
-      font-size: 14px;
-    }
-
-    .floating-email {
-      position: fixed;
-      right: 16px;
-      bottom: 18px;
-      z-index: 60;
-      background: #22c55e;
-      color: white;
-      text-decoration: none;
-      border-radius: 999px;
-      padding: 15px 20px;
-      font-weight: 900;
-      box-shadow: 0 12px 28px rgba(0,0,0,.28);
-    }
-  </style>
+<style>
+body{background:#0b132b;color:white;font-family:Arial;margin:0}
+.container{max-width:400px;margin:auto;padding:15px}
+.card{background:#1c2541;padding:15px;border-radius:12px;margin:10px 0}
+button{padding:12px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;width:100%;margin-top:5px}
+.buy{background:#1d35ff;color:white}
+.add{background:#f59e0b;color:white}
+.trial{background:red;color:white}
+input{width:100%;padding:10px;margin:5px 0;border-radius:10px;border:none}
+h2{margin:5px 0}
+.note{color:#00ff88;margin-top:10px}
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="topbar">
-      <div class="brand">
-        <div class="logo">S</div>
-        <div class="brand-name">SolarSMMFlow</div>
-      </div>
-      <a class="support-btn" href="mailto:socialsmmflow@gmail.com">Email Support</a>
-    </div>
 
-    <div class="hero">
-      <div class="hero-badges">
-        <div class="hero-badge">🚀 Premium SMM Services</div>
-        <div class="hero-badge">💳 Easy UPI</div>
-        <div class="hero-badge">⭐ Trusted Panel</div>
-      </div>
-      <h1>Grow Your Social Media Instantly</h1>
-      <p>Choose service → Paste link → Pay → Delivery starts</p>
-    </div>
+<div class="container">
 
-    <div class="balance-strip" id="topBalance">Current Balance: ₹0</div>
+<h2>🔥 SolarSMMFlow</h2>
+<p id="bal">Balance ₹0</p>
 
-    <div class="section-title">Instagram Services</div>
-    <div class="section-subtitle">Followers • Likes • Views • Free Trial</div>
+<div class="card">
+<h3>🎁 Free 100 Followers</h3>
+<input id="trialLink" placeholder="Instagram link">
+<button class="trial" onclick="trial()">Get Free</button>
+<p id="trialMsg"></p>
+</div>
 
-    <div class="service-card">
-      <div class="icon-box trial-bg">🎁</div>
-      <div class="service-content">
-        <div class="tag">FREE TRIAL</div>
-        <div class="service-title">100 Free Followers</div>
-        <div class="service-desc">One browser can use this offer only one time</div>
-      </div>
-      <div class="service-side">
-        <div class="service-price">₹0</div>
-        <button class="buy-btn" onclick="showTrialPanel()">GET</button>
-      </div>
-    </div>
+<div class="card">
+<h3 id="title">Select Service</h3>
+<input id="url" placeholder="Enter link">
+<input id="qty" placeholder="Quantity">
 
-    <div class="service-card">
-      <div class="icon-box ig-bg">👥</div>
-      <div class="service-content">
-        <div class="service-title">1K Instagram Followers</div>
-        <div class="service-desc">Fast delivery</div>
-      </div>
-      <div class="service-side">
-        <div class="service-price">₹80</div>
-        <button class="buy-btn" onclick="selectService('1K Instagram Followers',80,'Fast delivery')">BUY</button>
-      </div>
-    </div>
+<button class="add" onclick="pay()">Add Balance</button>
 
-    <div class="service-card">
-      <div class="icon-box ig-bg">❤️</div>
-      <div class="service-content">
-        <div class="tag">POPULAR</div>
-        <div class="service-title">50K Instagram Likes</div>
-        <div class="service-desc">Instant boost</div>
-      </div>
-      <div class="service-side">
-        <div class="service-price">₹149</div>
-        <button class="buy-btn" onclick="selectService('50K Instagram Likes',149,'Instant boost')">BUY</button>
-      </div>
-    </div>
+<!-- ADMIN BUTTON (hide later) -->
+<button onclick="verifyPayment()">✅ Payment Done</button>
 
-    <div class="service-card">
-      <div class="icon-box ig-bg">👀</div>
-      <div class="service-content">
-        <div class="service-title">100K Instagram Views</div>
-        <div class="service-desc">Explore push</div>
-      </div>
-      <div class="service-side">
-        <div class="service-price">₹240</div>
-        <button class="buy-btn" onclick="selectService('100K Instagram Views',240,'Explore push')">BUY</button>
-      </div>
-    </div>
+<button class="buy" onclick="buy()">Buy Now</button>
 
-    <div class="section-title">YouTube Services</div>
-    <div class="section-subtitle">Subscribers • Views • Watchtime • Monetization</div>
+<p id="msg"></p>
+</div>
 
-    <div class="service-card">
-      <div class="icon-box yt-bg">▶️</div>
-      <div class="service-content">
-        <div class="tag">POPULAR</div>
-        <div class="service-title">1K YouTube Subscribers</div>
-        <div class="service-desc">Fast delivery</div>
-      </div>
-      <div class="service-side">
-        <div class="service-price">₹50</div>
-        <button class="buy-btn" onclick="selectService('1K YouTube Subscribers',50,'Fast delivery')">BUY</button>
-      </div>
-    </div>
+</div>
 
-    <div class="service-card">
-      <div class="icon-box yt-bg">👀</div>
-      <div class="service-content">
-        <div class="service-title">5K YouTube Views</div>
-        <div class="service-desc">Boost reach</div>
-      </div>
-      <div class="service-side">
-        <div class="service-price">₹70</div>
-        <button class="buy-btn" onclick="selectService('5K YouTube Views',70,'Boost reach')">BUY</button>
-      </div>
-    </div>
+<script>
 
-    <div class="service-card">
-      <div class="icon-box yt-bg">⏳</div>
-      <div class="service-content">
-        <div class="service-title">4000 Hours Watchtime</div>
-        <div class="service-desc">Monetization ready</div>
-      </div>
-      <div class="service-side">
-        <div class="service-price">₹250</div>
-        <button class="buy-btn" onclick="selectService('4000 Hours Watchtime',250,'Monetization ready')">BUY</button>
-      </div>
-    </div>
+let balance = Number(localStorage.getItem("bal")||0)
+let trialUsed = localStorage.getItem("trial")||"no"
 
-    <div class="service-card">
-      <div class="icon-box yt-bg">⭐</div>
-      <div class="service-content">
-        <div class="tag">BEST VALUE</div>
-        <div class="service-title">YouTube Full Package</div>
-        <div class="service-desc">Subs + views + watchtime + monetize</div>
-      </div>
-      <div class="service-side">
-        <div class="service-price">₹700</div>
-        <button class="buy-btn" onclick="selectService('YouTube Full Package',700,'Full package')">BUY</button>
-      </div>
-    </div>
+function update(){
+document.getElementById("bal").innerText="Balance ₹"+balance
+}
+update()
 
-    <div class="section-title">Facebook Services</div>
-    <div class="section-subtitle">Likes • Followers</div>
+function pay(){
+let amount = 100
 
-    <div class="service-card">
-      <div class="icon-box fb-bg">👍</div>
-      <div class="service-content">
-        <div class="tag">POPULAR</div>
-        <div class="service-title">1M Facebook Likes</div>
-        <div class="service-desc">High authority</div>
-      </div>
-      <div class="service-side">
-        <div class="service-price">₹149</div>
-        <button class="buy-btn" onclick="selectService('1M Facebook Likes',149,'High authority')">BUY</button>
-      </div>
-    </div>
+let upi="upi://pay?pa=ambrishtiwari@fam&pn=SolarSMMFlow&am="+amount
 
-    <div class="order-panel">
-      <h3 id="orderTitle">Place Order</h3>
-      <p id="orderDesc">Choose a service and fill details below.</p>
+document.getElementById("msg").innerText="UPI opened. Pay first then click 'Payment Done'"
 
-      <div class="mini-balance" id="miniBalance">Current Balance: ₹0</div>
+window.location.href=upi
+}
 
-      <input id="mainUrl" type="text" placeholder="Enter your social media URL">
-      <input id="mainQty" type="number" placeholder="Enter your quantity">
+function verifyPayment(){
+balance+=100
+localStorage.setItem("bal",balance)
+update()
+alert("Payment verified")
+}
 
-      <button class="action-btn add-balance-btn" onclick="addBalance()">Add Balance</button>
-      <button class="action-btn buy-main-btn" onclick="buyNow()">Buy Now</button>
+function buy(){
 
-      <div id="orderOutput" class="note"></div>
-    </div>
+let u=url.value
+let q=qty.value
 
-    <div class="order-panel" id="trialPanel" style="display:none;">
-      <h3>100 Free Followers Trial</h3>
-      <p>Enter only your Instagram URL. One browser can use this offer only one time.</p>
+if(!u||!q) return msg.innerText="Fill all fields"
 
-      <input id="trialUrl" type="text" placeholder="Enter your Instagram URL">
-      <button class="action-btn trial-btn" onclick="claimTrial()">Get Free Trial</button>
+if(balance<80) return msg.innerText="Please add your balance then you buy service"
 
-      <div id="trialOutput" class="note"></div>
-    </div>
+balance-=80
+localStorage.setItem("bal",balance)
+update()
 
-    <div class="contact-box">
-      <strong>Contact us:</strong><br>
-      socialsmmflow@gmail.com
-    </div>
-  </div>
+msg.innerHTML="🎉 Congratulations your order is successful purchase"
 
-  <a class="floating-email" href="mailto:socialsmmflow@gmail.com">📧 Email</a>
+}
 
-  <script>
-    const UPI_ID = "ambrishtiwari@fam";
-    const CONTACT_EMAIL = "socialsmmflow@gmail.com";
+function trial(){
 
-    let balance = parseInt(localStorage.getItem("solarsmm_balance") || "0", 10);
-    let trialUsed = localStorage.getItem("solarsmm_trial_used") || "false";
+if(trialUsed=="yes") return trialMsg.innerText="You have already used this offer your free trial is end"
 
-    let selectedServiceName = "";
-    let selectedServicePrice = 0;
-    let selectedServiceDesc = "";
+let link=trialLink.value
+if(!link) return trialMsg.innerText="Enter link"
 
-    function updateBalanceUI() {
-      document.getElementById("topBalance").innerText = "Current Balance: ₹" + balance;
-      document.getElementById("miniBalance").innerText = "Current Balance: ₹" + balance;
-    }
+localStorage.setItem("trial","yes")
 
-    function selectService(name, price, desc) {
-      selectedServiceName = name;
-      selectedServicePrice = price;
-      selectedServiceDesc = desc;
-      document.getElementById("orderTitle").innerText = name + " - ₹" + price;
-      document.getElementById("orderDesc").innerText = desc;
-      document.getElementById("orderOutput").innerText = "";
-      document.getElementById("trialPanel").style.display = "none";
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-    }
+trialMsg.innerHTML="🎉 Congratulations your order is successful purchase"
 
-    function addBalance() {
-      const amount = selectedServicePrice || 100;
-      balance += amount;
-      localStorage.setItem("solarsmm_balance", String(balance));
-      updateBalanceUI();
+}
 
-      document.getElementById("orderOutput").innerText =
-        "UPI opened for ₹" + amount + ". Current Balance: ₹" + balance;
+</script>
 
-      const upiUrl =
-        "upi://pay?pa=" + encodeURIComponent(UPI_ID) +
-        "&pn=" + encodeURIComponent("SolarSMMFlow") +
-        "&am=" + encodeURIComponent(amount) +
-        "&cu=INR";
-
-      window.location.href = upiUrl;
-    }
-
-    function buyNow() {
-      if (!selectedServiceName) {
-        document.getElementById("orderOutput").innerText = "Please choose a service first.";
-        return;
-      }
-
-      const url = document.getElementById("mainUrl").value.trim();
-      const qty = document.getElementById("mainQty").value.trim();
-
-      if (!url || !qty) {
-        document.getElementById("orderOutput").innerText = "Please enter your URL and quantity.";
-        return;
-      }
-
-      if (balance < selectedServicePrice) {
-        document.getElementById("orderOutput").innerText =
-          "Please add your balance then you buy service";
-        return;
-      }
-
-      balance -= selectedServicePrice;
-      localStorage.setItem("solarsmm_balance", String(balance));
-      updateBalanceUI();
-
-      const orderText =
-        "New Order\n" +
-        "Service: " + selectedServiceName + "\n" +
-        "Description: " + selectedServiceDesc + "\n" +
-        "Price: ₹" + selectedServicePrice + "\n" +
-        "Quantity: " + qty + "\n" +
-        "URL: " + url + "\n" +
-        "Send to: " + CONTACT_EMAIL;
-
-      document.getElementById("orderOutput").innerHTML =
-        '<textarea id="mainOrderText">' + orderText + '</textarea>' +
-        '<button class="action-btn copy-btn" onclick="copyMainOrder()">Copy Order</button>' +
-        '<button class="action-btn email-order-btn" onclick="openEmailOrder()">Email Order</button>' +
-        '<div class="note">🎉 Congratulations your order is successful purchase</div>';
-    }
-
-    function copyMainOrder() {
-      const text = document.getElementById("mainOrderText").value;
-      navigator.clipboard.writeText(text);
-      alert("Order copied!");
-    }
-
-    function openEmailOrder() {
-      const text = document.getElementById("mainOrderText").value;
-      const subject = "New Order - SolarSMMFlow";
-      const body = text;
-      window.location.href =
-        "mailto:" + CONTACT_EMAIL +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
-    }
-
-    function showTrialPanel() {
-      document.getElementById("trialPanel").style.display = "block";
-      document.getElementById("trialOutput").innerText = "";
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-    }
-
-    function claimTrial() {
-      const url = document.getElementById("trialUrl").value.trim();
-
-      if (!url) {
-        document.getElementById("trialOutput").innerText = "Enter your Instagram URL.";
-        return;
-      }
-
-      if (trialUsed === "true") {
-        document.getElementById("trialOutput").innerText =
-          "You have already used this offer your free trial is end";
-        return;
-      }
-
-      trialUsed = "true";
-      localStorage.setItem("solarsmm_trial_used", "true");
-
-      const trialText =
-        "Free Trial Order\n" +
-        "Service: 100 Free Followers\n" +
-        "Instagram URL: " + url + "\n" +
-        "Send to: " + CONTACT_EMAIL;
-
-      document.getElementById("trialOutput").innerHTML =
-        '<textarea id="trialOrderText">' + trialText + '</textarea>' +
-        '<button class="action-btn copy-btn" onclick="copyTrialOrder()">Copy Trial Order</button>' +
-        '<button class="action-btn email-order-btn" onclick="openTrialEmail()">Email Trial Order</button>' +
-        '<div class="note">🎉 Congratulations your order is successful purchase</div>';
-    }
-
-    function copyTrialOrder() {
-      const text = document.getElementById("trialOrderText").value;
-      navigator.clipboard.writeText(text);
-      alert("Trial order copied!");
-    }
-
-    function openTrialEmail() {
-      const text = document.getElementById("trialOrderText").value;
-      const subject = "Free Trial Order - SolarSMMFlow";
-      const body = text;
-      window.location.href =
-        "mailto:" + CONTACT_EMAIL +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
-    }
-
-    updateBalanceUI();
-  </script>
 </body>
 </html>
